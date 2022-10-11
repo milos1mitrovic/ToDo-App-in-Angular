@@ -1,0 +1,61 @@
+<div class="todo-holder">
+  <h2 *ngIf="!groupId">No group selected</h2>
+
+  <div *ngIf="groupId">
+    <div style="display: flex">
+      <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="description" />
+          <!-- error -->
+          <mat-error *ngIf="errorHandling('description', 'required')">
+            You must provide a <strong>name</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">
+          Add ToDo
+        </button>
+      </form>
+    </div>
+
+    <div
+      class="list-holder"
+      *ngFor="let todo of todoList"
+      style="display: flex; justify-content: space-between; margin-top: 2px"
+    >
+      <mat-card
+        style="width: 80%"
+        (click)="editItem(todo.id, todo.description, todo.groupId)"
+      >
+        <div *ngIf="todo.id != selectedId">
+          {{ todo.description }}
+        </div>
+        <div *ngIf="todo.id == selectedId">
+          <form [formGroup]="editForm" (ngSubmit)="submitEditForm()" novalidate>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Name"
+                formControlName="description"
+              />
+              <mat-error *ngIf="errorEditHandling('description', 'required')">
+                You must provide a <strong>name</strong>
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">
+              Save
+            </button>
+          </form>
+        </div>
+      </mat-card>
+      <div>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="removeToDoItem(todo.id)"
+        >
+          delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

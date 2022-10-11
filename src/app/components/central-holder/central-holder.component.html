@@ -1,0 +1,11 @@
+<div class="central-holder">
+  <app-todo-group-list
+    (filterTodosHandler)="filterToDos($event)"
+    style="flex: 1"
+  ></app-todo-group-list>
+  <app-todo-list
+    [groupId]="groupId"
+    [todoList]="todoList"
+    style="flex: 3"
+  ></app-todo-list>
+</div>

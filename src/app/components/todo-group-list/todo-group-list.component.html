@@ -1,0 +1,37 @@
+<div class="groups-holder">
+  <mat-action-list *ngFor="let group of groups">
+    <div style="display: flex">
+      <button mat-list-item (click)="filterTodos(group.id)">
+        {{ group.name }}
+      </button>
+      <button mat-mini-fab color="warn" (click)="removeGroupItem(group.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-action-list>
+
+  <div>
+    <form
+      class="group-input"
+      [formGroup]="groupForm"
+      (ngSubmit)="addToDoGroup()"
+      novalidate
+    >
+      <mat-form-field appearance="fill">
+        <mat-label>New Lists Name</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="newListName"
+          formControlName="newListName"
+        />
+        <mat-error *ngIf="errorHandling('newListName', 'required')">
+          You must provide a <strong>name</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">
+        Add New List
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+@media screen and (min-width: 800px) {
+  .list-holder > div > button {
+    display: none;
+  }
+
+  .list-holder:hover > div > button {
+    display: block;
+  }
+}
+
+.todo-holder {
+  width: 60%;
+  margin: 0 auto;
+}

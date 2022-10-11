@@ -1,0 +1,13 @@
+.central-holder {
+  box-sizing: border-box;
+  display: flex;
+  overflow-y: scroll;
+  height: calc(100% - 100px);
+  padding: 15px;
+}
+
+@media screen and (max-width: 800px) {
+  .central-holder {
+    flex-direction: column-reverse;
+  }
+}
